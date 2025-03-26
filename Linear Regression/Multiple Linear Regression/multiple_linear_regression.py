@@ -22,12 +22,12 @@ print(X)
 from sklearn.model_selection import train_test_split
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
 
-# Training the Multiple Linear Regression model on the Training set
-from sklearn.linear_model import LinearRegression
-regressor = LinearRegression()
-regressor.fit(X_train, y_train)
+# Training the Ridge Regression model on the Training set
+from sklearn.linear_model import Ridge
+ridge_regressor = Ridge(alpha=1.0)  # Alpha controls regularization strength
+ridge_regressor.fit(X_train, y_train)
 
 # Predicting the Test set results
-y_pred = regressor.predict(X_test)
+y_pred = ridge_regressor.predict(X_test)
 np.set_printoptions(precision=2)
 print(np.concatenate((y_pred.reshape(len(y_pred),1), y_test.reshape(len(y_test),1)),1))
